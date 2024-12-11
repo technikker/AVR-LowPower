@@ -17,15 +17,15 @@ void setup()
 	SerialUSB.println("Entering standby mode in:");
 	for (count; count > 0; count--)
 	{
-	  SerialUSB.print(count);	
-	  SerialUSB.println(" s");
-	  delay(1000);
-  }
-  // *********************
-    
-  // External interrupt on pin (example: press of an active low button)
-  // A pullup resistor is used to hold the signal high when no button press
-  attachInterrupt(pin, blink, LOW);
+		SerialUSB.print(count);
+		SerialUSB.println(" s");
+		delay(1000);
+	}
+	// *********************
+
+	// External interrupt on pin (example: press of an active low button)
+	// A pullup resistor is used to hold the signal high when no button press
+	attachInterrupt(pin, blink, LOW);
 }
 
 void loop() 
@@ -35,20 +35,20 @@ void loop()
 	SerialUSB.println("Zzzz...");
 	// Detach USB interface
 	USBDevice.detach();
-  // Enter standby mode
-  LowPower.standby();  
-  // Attach USB interface
-  USBDevice.attach();
-  // Wait for serial USB port to open
-  while(!SerialUSB);
-  // Serial USB is blazing fast, you might miss the messages
-  delay(1000);
-  SerialUSB.println("Awake!");
-  SerialUSB.println("Send any character to enter standby mode again");
-  // Wait for user response
-  while(!SerialUSB.available());
-  while(SerialUSB.available() > 0)
-  {
+	// Enter standby mode
+	LowPower.standby();
+	// Attach USB interface
+	USBDevice.attach();
+	// Wait for serial USB port to open
+	while(!SerialUSB);
+	// Serial USB is blazing fast, you might miss the messages
+	delay(1000);
+	SerialUSB.println("Awake!");
+	SerialUSB.println("Send any character to enter standby mode again");
+	// Wait for user response
+	while(!SerialUSB.available());
+	while(SerialUSB.available() > 0)
+	{
 		SerialUSB.read();
 	}
 }
